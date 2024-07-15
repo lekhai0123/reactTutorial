@@ -1,14 +1,15 @@
 import logo from './logo.svg';
 import './App.scss';
+import MyComponent from './example/myComponent';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          hé lô
-        </p>
+          hé lô          
+        </p>        
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -17,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <MyComponent/>
       </header>
     </div>
   );
