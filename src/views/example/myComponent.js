@@ -1,35 +1,33 @@
 import React, { Fragment } from "react";
 class MyComponent extends React.Component {
   state = {
-    name: "Khải",
-    age: "20",
+    firstName: '',
+    lastName: ''
   };
-  handleOnChangeName = (event) => {
+  handleOnChangeLastName = (event) =>{
     this.setState({
-      name: event.target.value,
-    });
-  };
-  handleOnClick = () => {
-    alert("hé lô");
-  };
+      lastName: event.target.value
+    })
+  }
+  handleOnChangeFirstName = (event) =>{
+    this.setState({
+      firstName: event.target.value
+    })
+  }
+  handleOnClick =() =>{
+    console.log(this.state)
+  }
   render() {
+    console.log()
     return (
       <>
-        <div>
-          <br></br>
-          <input className="1"
-            value={this.state.name}
-            type="text"
-            onChange={(event) => this.handleOnChangeName(event)}
-          ></input>
-        </div>
-        <div>
-          <h2>my name is {this.state.name}</h2>
-          <h2>i'm {this.state.age}</h2>
-        </div>
-        <div>
-          <input className="2" value="click me" type="button" onClick={() => this.handleOnClick()}/>
-        </div>
+        <form>
+          <label>First Name</label><br/>
+          <input type="text" value={this.state.firstName} onChange={(event)=>this.handleOnChangeFirstName(event)}/><br/>
+          <label>Last Name</label><br/>
+          <input type="text" value={this.state.lastName} onChange={(event)=>this.handleOnChangeLastName(event)}/><br/>
+          <input type="button" value='Submit' onClick={()=>this.handleOnClick()}/>
+        </form>
       </>
     );
   }
