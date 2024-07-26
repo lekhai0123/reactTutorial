@@ -2,39 +2,47 @@ import React, { Fragment } from "react";
 import ChildComponent from "./ChildComponent";
 class MyComponent extends React.Component {
   state = {
-    firstName: '',
-    lastName: '',
+    job: '',
+    salary: '',
     arrJob:[
-      {id:1, job:'Dev', salary:'500$'},
-      {id:2, job:'Tester', salary:'400$'}
+      {id:1, job:'Dev', salary:500+'$'},
+      {id:2, job:'Tester', salary:400+'$'}
     ]
   };
-  handleOnChangeLastName = (event) =>{
+  handleOnChangeSalary = (event) =>{
     this.setState({
-      lastName: event.target.value
+      salary: event.target.value
     })
   }
-  handleOnChangeFirstName = (event) =>{
+  handleOnChangeJob = (event) =>{
     this.setState({
-      firstName: event.target.value
+      job: event.target.value
     })
   }
   handleOnClick =() =>{
-    console.log(this.state)
+    const newJob = {
+      id: this.state.arrJob.length + 1,
+      job: this.state.job,
+      salary: this.state.salary + '$'
+    };
+    this.setState(prevState =>({
+      arrJob:[...prevState.arrJob, newJob],
+      job:'',
+      salary: ''
+    }))
   }
-  render() {
-    console.log()
+  render() {    
     return (
       <>
         <form>
-          <label>First Name</label><br/>
-          <input type="text" value={this.state.firstName} onChange={(event)=>this.handleOnChangeFirstName(event)}/><br/>
-          <label>Last Name</label><br/>
-          <input type="text" value={this.state.lastName} onChange={(event)=>this.handleOnChangeLastName(event)}/><br/>
+          <label>Job</label><br/>
+          <input type="text" value={this.state.job} onChange={(event)=>this.handleOnChangeJob(event)}/><br/>
+          <label>Salary</label><br/>
+          <input type="text" value={this.state.salary} onChange={(event)=>this.handleOnChangeSalary(event)}/><br/>
           <input type="button" value='Submit' onClick={()=>this.handleOnClick()}/>
         </form>
         <ChildComponent 
-          name={this.state.firstName+' '+this.state.lastName}
+          name={this.state.job+' '+this.state.salary}
           arrJob = {this.state.arrJob}
         />
       </>
