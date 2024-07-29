@@ -10,11 +10,10 @@ class ChildComponent extends React.Component {
   };
   render() {
     console.log("check prop", this.props);
-    let { name, arrJob } = this.props;
+    let { arrJob } = this.props;
     let { showJob } = this.state;
     return (
       <>
-        <div>Thông tin cá nhân: {name}</div>
         {showJob === false ? (
           <button onClick={() => this.handleShowHide()}>Show</button>
         ) : (

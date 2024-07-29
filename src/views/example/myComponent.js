@@ -1,50 +1,23 @@
 import React, { Fragment } from "react";
 import ChildComponent from "./ChildComponent";
+import AddComponent from "./AddComponent";
 class MyComponent extends React.Component {
   state = {
-    job: '',
-    salary: '',
-    arrJob:[
-      {id:1, job:'Dev', salary:500+'$'},
-      {id:2, job:'Tester', salary:400+'$'}
-    ]
+    arrJob: [
+      { id: 1, job: "Dev", salary: 500 + "$" },
+      { id: 2, job: "Tester", salary: 400 + "$" },
+    ],
   };
-  handleOnChangeSalary = (event) =>{
+  addJob = (job) => {
     this.setState({
-      salary: event.target.value
-    })
-  }
-  handleOnChangeJob = (event) =>{
-    this.setState({
-      job: event.target.value
-    })
-  }
-  handleOnClick =() =>{
-    const newJob = {
-      id: this.state.arrJob.length + 1,
-      job: this.state.job,
-      salary: this.state.salary + '$'
-    };
-    this.setState(prevState =>({
-      arrJob:[...prevState.arrJob, newJob],
-      job:'',
-      salary: ''
-    }))
-  }
-  render() {    
+      arrJob: [...this.state.arrJob, job],
+    });
+  };
+  render() {
     return (
       <>
-        <form>
-          <label>Job</label><br/>
-          <input type="text" value={this.state.job} onChange={(event)=>this.handleOnChangeJob(event)}/><br/>
-          <label>Salary</label><br/>
-          <input type="text" value={this.state.salary} onChange={(event)=>this.handleOnChangeSalary(event)}/><br/>
-          <input type="button" value='Submit' onClick={()=>this.handleOnClick()}/>
-        </form>
-        <ChildComponent 
-          name={this.state.job+' '+this.state.salary}
-          arrJob = {this.state.arrJob}
-        />
+        <AddComponent addJob={this.addJob} arrJob={this.state.arrJob} />
+        <ChildComponent arrJob={this.state.arrJob} />
       </>
     );
   }
